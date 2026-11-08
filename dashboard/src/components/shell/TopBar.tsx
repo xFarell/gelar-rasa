@@ -4,6 +4,7 @@ import { POLLUTANTS, VAR_META } from "../../lib/kpi";
 import { fmtDate } from "../../lib/format";
 import { cityLabel } from "../../lib/regions";
 import { Logo } from "../ui";
+import { MenuDock } from "./MenuDock";
 
 /** Header ringkas: wordmark, wilayah, stasiun, periode, polutan, status data. */
 export function TopNavigation() {
@@ -25,6 +26,7 @@ export function TopNavigation() {
         {dirty && <button type="button" className="btn btn--ghost btn--sm" onClick={reset}>Atur ulang</button>}
       </div>
       <DataStatus />
+      <MenuDock />
     </header>
   );
 }

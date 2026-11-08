@@ -1,43 +1,44 @@
-/* AIR IN MOTION — design tokens (tema terang).
-   60 latar & kartu (#F5F7F1, putih) · 30 hijau/sage (struktur, navigasi) · 10 aksen semantik.
-   Warna spesifikasi dipakai untuk isian dan tanda grafis; teks kecil memakai varian "ink" yang lolos kontras 4,5:1. */
+/* AIR IN MOTION — design tokens (tema terang, palet biru).
+   60 latar & kartu (#F4F7FB, putih) · 30 biru (struktur, navigasi) · 10 aksen semantik.
+   Warna spesifikasi dipakai untuk isian dan tanda grafis; teks kecil memakai varian "ink" yang lolos kontras 4,5:1.
+   Nama variabel historis (green/sage/mint) dipertahankan; nilainya kini biru. */
 :root {
   /* 60 — latar & permukaan */
-  --bg: #f5f7f1;
+  --bg: #f4f7fb;
   --card: #ffffff;
-  --sage: #e6efe2;
-  --mint: #d6e9d8;
-  --line: #e6eae3;
-  --line-strong: #d3dbd0;
+  --sage: #e4eef8;
+  --mint: #d3e6f5;
+  --line: #e4eaf1;
+  --line-strong: #d0dae6;
 
-  /* 30 — hijau struktural */
-  --green: #497b5b;
-  --green-deep: #285440;
-  --green-ink: #3e6b4f;
+  /* 30 — biru struktural (nama variabel lama dipertahankan) */
+  --green: #3a7ca5;
+  --green-deep: #1d4e6f;
+  --green-ink: #2f6a8f;
 
   /* 10 — aksen */
   --sky: #b9dce9;
-  --teal: #368c85;
+  --teal: #2f8fa8;
   --yellow: #e6d991;
   --amber: #e6a85d;
   --coral: #d97770;
 
-  /* Varian teks (kontras ≥ 4,5:1 pada putih dan #F5F7F1) */
-  --teal-ink: #2b716b;
+  /* Varian teks (kontras ≥ 4,5:1 pada putih dan #F4F7FB) */
+  --teal-ink: #24738c;
   --sky-ink: #2e6f8a;
   --amber-ink: #9a6420;
   --coral-ink: #b5534c;
 
-  --text: #29382f;
-  --muted: #5b6a60; /* pengganti #839087 untuk teks: #839087 hanya 3,3:1 di putih */
-  --faint: #5b6a60;
-  --decor: #839087; /* ikon dekoratif, garis bantu */
+  --text: #24313d;
+  --muted: #5a6874; /* kontras ≥ 4,5:1 di putih */
+  --faint: #5a6874;
+  --decor: #8593a0; /* ikon dekoratif, garis bantu */
 
   /* Seri grafik (garis ≥ 3:1 terhadap putih) */
-  --c-pm25: #285440;
+  --c-pm25: #1d4e6f;
   --c-pm10: #2e6f8a;
   --c-alt: #9a6420;
-  --c-band: rgba(73, 123, 91, 0.14);
+  --c-band: rgba(58, 124, 165, 0.14);
   --c-shade: rgba(230, 217, 145, 0.28);
 
   /* Tipografi */
@@ -58,8 +59,8 @@
   --gap: 12px;
   --radius: 18px;
   --radius-sm: 10px;
-  --shadow: 0 1px 2px rgba(41, 56, 47, 0.04), 0 8px 24px -12px rgba(41, 56, 47, 0.14);
-  --shadow-lift: 0 2px 4px rgba(41, 56, 47, 0.05), 0 18px 36px -14px rgba(41, 56, 47, 0.24);
+  --shadow: 0 1px 2px rgba(29, 50, 70, 0.04), 0 8px 24px -12px rgba(29, 50, 70, 0.14);
+  --shadow-lift: 0 2px 4px rgba(29, 50, 70, 0.05), 0 18px 36px -14px rgba(29, 50, 70, 0.24);
 
   /* Gerak */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

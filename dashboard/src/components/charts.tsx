@@ -7,7 +7,7 @@ import { tip, TipRow } from "./ui";
 
 export const C = { teal: "var(--teal)", sky: "var(--c-pm10)", lime: "var(--green-deep)", amber: "var(--amber)", coral: "var(--coral)", muted: "var(--muted)", faint: "var(--faint)", text: "var(--text)", pm25: "var(--c-pm25)", pm10: "var(--c-pm10)" };
 /** Warna kategori konsisten di seluruh dashboard (stasiun/series pembanding). */
-export const SERIES_COLORS = ["#285440", "#2e6f8a", "#9a6420", "#368c85", "#8a5a8f", "#b5534c", "#5f9a70", "#6b7f2e"];
+export const SERIES_COLORS = ["#1d4e6f", "#2e6f8a", "#9a6420", "#2f8fa8", "#8a5a8f", "#b5534c", "#4a94c4", "#5b8fb8"];
 
 function Frame({ height, children, label }: { height: number; children: (w: number) => React.ReactNode; label: string }) {
   const [ref, w] = useSize<HTMLDivElement>();
@@ -217,7 +217,7 @@ export function Histogram({ values, unit, limits = [], label, color = C.teal, he
 // Heatmap baris × kolom
 // ---------------------------------------------------------------------
 export interface HeatCell { r: string; c: string; v: number; label?: string; tip?: React.ReactNode }
-export function Heatmap({ rows, cols, cells, color, colLabel = (c) => c, rowLabel = (r) => r, cellH = 22, label, showValues = false, valueFmt = (v: number) => fmt(v, 0), onRowClick, onCellClick, minCellW = 10, textColor = () => "#29382f" }: {
+export function Heatmap({ rows, cols, cells, color, colLabel = (c) => c, rowLabel = (r) => r, cellH = 22, label, showValues = false, valueFmt = (v: number) => fmt(v, 0), onRowClick, onCellClick, minCellW = 10, textColor = () => "#24313d" }: {
   rows: string[]; cols: string[]; cells: HeatCell[]; color: (v: number) => string; colLabel?: (c: string, i: number) => string;
   rowLabel?: (r: string) => string; cellH?: number; label: string; showValues?: boolean; valueFmt?: (v: number) => string; onRowClick?: (r: string) => void; onCellClick?: (r: string, c: string) => void; minCellW?: number; textColor?: (v: number) => string;
 }) {
@@ -369,7 +369,7 @@ export function WindRose({ counts, bins, label, size = 320 }: { counts: number[]
   );
 }
 export const binLabel = (bins: (number | null)[], i: number) => bins[i + 1] === null ? `≥ ${bins[i]} m/s` : `${bins[i]}–${bins[i + 1]} m/s`;
-export const ROSE_COLORS = ["#b9dce9", "#6fb0c9", "#2e6f8a", "#285440"];
+export const ROSE_COLORS = ["#b9dce9", "#6fb0c9", "#2e6f8a", "#1d4e6f"];
 
 // ---------------------------------------------------------------------
 // RR per lag dan forest plot

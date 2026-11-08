@@ -2,9 +2,9 @@ import { fmt } from "../lib/format";
 
 /**
  * Kategori konsentrasi stasiun relatif terhadap baku 24 jam (statistik harian ↔ baku harian: periode rata-rata sama).
- * Dasar klasifikasi: ≤ 50% baku (hijau), 50–100% baku (amber, mendekati), > baku (coral, melampaui).
+ * Dasar klasifikasi: ≤ 50% baku (biru), 50–100% baku (amber, mendekati), > baku (coral, melampaui).
  */
-export const CATEGORY_HEX = { low: "#5f9a70", mid: "#e6a85d", high: "#d97770", na: "#c9d0c8", neutral: "#6fb0c9" };
+export const CATEGORY_HEX = { low: "#4a94c4", mid: "#e6a85d", high: "#d97770", na: "#c9d0c8", neutral: "#6fb0c9" };
 export function categoryHex(v: number, limit: number | null): string {
   if (!Number.isFinite(v)) return CATEGORY_HEX.na;
   if (limit === null) return CATEGORY_HEX.neutral;

@@ -5,8 +5,8 @@ import { seeded, type Lot } from "./layout";
 // ---------------------------------------------------------------------
 // BuildingObject: bangunan dan pohon dekoratif (InstancedMesh, satu draw call per jenis)
 // ---------------------------------------------------------------------
-const BUILDING_TINTS = ["#ffffff", "#f4f7f1", "#eef3ea", "#e2ece4", "#dfeaf0"].map((c) => new THREE.Color(c));
-const TREE_TINTS = ["#7fae8a", "#5f9a70", "#497b5b", "#8fbf98"].map((c) => new THREE.Color(c));
+const BUILDING_TINTS = ["#ffffff", "#f4f7fb", "#eef3f9", "#e2ecf4", "#dfeaf0"].map((c) => new THREE.Color(c));
+const TREE_TINTS = ["#7fb0d0", "#4a94c4", "#3a7ca5", "#9cc8e4"].map((c) => new THREE.Color(c));
 
 export function createBuildings(lots: Lot[]) {
   const spots: { x: number; z: number; w: number; d: number; h: number; tint: THREE.Color }[] = [];
@@ -62,15 +62,15 @@ export function createBuildings(lots: Lot[]) {
 export function createBoard(lots: Lot[], width: number, depth: number) {
   const g = new THREE.Group();
   const W = width + 4, D = depth + 4;
-  const base = new THREE.Mesh(new RoundedBoxGeometry(W + 1.2, 1.4, D + 1.2, 4, 0.6), new THREE.MeshStandardMaterial({ color: "#497b5b", roughness: 0.9 }));
+  const base = new THREE.Mesh(new RoundedBoxGeometry(W + 1.2, 1.4, D + 1.2, 4, 0.6), new THREE.MeshStandardMaterial({ color: "#3a7ca5", roughness: 0.9 }));
   base.position.y = -0.85;
   base.receiveShadow = true;
-  const top = new THREE.Mesh(new RoundedBoxGeometry(W, 0.5, D, 4, 0.22), new THREE.MeshStandardMaterial({ color: "#f3f6ef", roughness: 0.95 }));
+  const top = new THREE.Mesh(new RoundedBoxGeometry(W, 0.5, D, 4, 0.22), new THREE.MeshStandardMaterial({ color: "#f3f7fb", roughness: 0.95 }));
   top.position.y = -0.1;
   top.receiveShadow = true;
   g.add(base, top);
   const blockGeo = new RoundedBoxGeometry(6.2, 0.3, 6.2, 2, 0.12);
-  const blockMat = new THREE.MeshStandardMaterial({ color: "#d6e9d8", roughness: 0.95 });
+  const blockMat = new THREE.MeshStandardMaterial({ color: "#d3e6f5", roughness: 0.95 });
   const blocks = new THREE.InstancedMesh(blockGeo, blockMat, lots.length);
   const m = new THREE.Matrix4();
   lots.forEach((l, i) => { m.makeTranslation(l.x, 0.15, l.z); blocks.setMatrixAt(i, m); });
@@ -113,18 +113,18 @@ export class MonitoringStationObject {
     this.group.position.set(x, 0.3, z);
     const pad = new THREE.Mesh(PAD_GEO, new THREE.MeshStandardMaterial({ color: "#ffffff", roughness: 0.6 }));
     pad.position.y = 0.09; pad.receiveShadow = true; pad.castShadow = true;
-    this.column = new THREE.Mesh(COL_GEO, new THREE.MeshStandardMaterial({ color: "#c9d0c8", roughness: 0.42, metalness: 0.05, transparent: true }));
+    this.column = new THREE.Mesh(COL_GEO, new THREE.MeshStandardMaterial({ color: "#c9d4de", roughness: 0.42, metalness: 0.05, transparent: true }));
     this.column.position.y = 0.18; this.column.castShadow = true;
     this.cap = new THREE.Mesh(CAP_GEO, new THREE.MeshStandardMaterial({ color: "#ffffff", roughness: 0.5, emissive: "#ffffff", emissiveIntensity: 0 }));
     this.cap.castShadow = true;
     // Baku 24 jam: selubung kaca setinggi baku + cincin di puncaknya (kolom yang menembus selubung = di atas baku)
-    this.limit = new THREE.Mesh(LIMIT_GEO, new THREE.MeshBasicMaterial({ color: "#5b6a60", transparent: true, opacity: 0.75 }));
+    this.limit = new THREE.Mesh(LIMIT_GEO, new THREE.MeshBasicMaterial({ color: "#5a6874", transparent: true, opacity: 0.75 }));
     this.limit.rotation.x = Math.PI / 2;
     this.sleeve = new THREE.Mesh(SLEEVE_GEO, new THREE.MeshBasicMaterial({ color: "#ffffff", transparent: true, opacity: 0.55, depthWrite: false, side: THREE.BackSide }));
     this.sleeve.position.y = 0.18;
-    this.pulse = new THREE.Mesh(PULSE_GEO, new THREE.MeshBasicMaterial({ color: "#497b5b", transparent: true, opacity: 0.5, side: THREE.DoubleSide, depthWrite: false }));
+    this.pulse = new THREE.Mesh(PULSE_GEO, new THREE.MeshBasicMaterial({ color: "#3a7ca5", transparent: true, opacity: 0.5, side: THREE.DoubleSide, depthWrite: false }));
     this.pulse.rotation.x = -Math.PI / 2; this.pulse.position.y = 0.02;
-    this.halo = new THREE.Mesh(HALO_GEO, new THREE.MeshBasicMaterial({ color: "#285440", transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }));
+    this.halo = new THREE.Mesh(HALO_GEO, new THREE.MeshBasicMaterial({ color: "#1d4e6f", transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }));
     this.halo.rotation.x = -Math.PI / 2; this.halo.position.y = 0.03;
     this.hit = new THREE.Mesh(HIT_GEO, new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, colorWrite: false }));
     this.hit.userData.code = code;
@@ -136,12 +136,12 @@ export class MonitoringStationObject {
     this.vis = v;
     this.targetH = v.noData ? 0.25 : Math.max(0.3, v.height);
     const mat = this.column.material;
-    mat.color.set(v.noData ? "#c9d0c8" : v.color);
+    mat.color.set(v.noData ? "#c9d4de" : v.color);
     mat.opacity = v.dim ? 0.28 : 1;
     mat.depthWrite = !v.dim;
     this.cap.material.opacity = v.dim ? 0.4 : 1;
     this.cap.material.transparent = v.dim;
-    this.pulse.material.color.set(v.noData ? "#c9d0c8" : v.color);
+    this.pulse.material.color.set(v.noData ? "#c9d4de" : v.color);
     this.pulse.visible = !v.dim && !v.noData;
     this.limit.visible = this.sleeve.visible = v.limitHeight !== null && !v.noData && !v.dim;
     if (v.limitHeight !== null) { this.limit.position.y = 0.18 + v.limitHeight; this.sleeve.scale.y = v.limitHeight; }
@@ -197,7 +197,7 @@ export class AirParticleSystem {
     this.pos = new Float32Array(n * 3);
     this.seed = new Float32Array(n);
     const col = new Float32Array(n * 3);
-    const tints = ["#368c85", "#7fae8a", "#5e93ab", "#497b5b"].map((c) => new THREE.Color(c));
+    const tints = ["#2f8fa8", "#7fb0d0", "#5e93ab", "#3a7ca5"].map((c) => new THREE.Color(c));
     for (let i = 0; i < n; i++) {
       this.pos[i * 3] = (Math.random() - 0.5) * W;
       this.pos[i * 3 + 1] = 0.8 + Math.random() * 9;
@@ -211,7 +211,7 @@ export class AirParticleSystem {
     this.points = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.22, map: dotTexture(), vertexColors: true, transparent: true, opacity: 0.55, depthWrite: false, sizeAttenuation: true }));
 
     const sGeo = new THREE.BoxGeometry(1.6, 0.035, 0.035);
-    this.streaks = new THREE.InstancedMesh(sGeo, new THREE.MeshBasicMaterial({ color: "#368c85", transparent: true, opacity: 0.32, depthWrite: false }), nStreak);
+    this.streaks = new THREE.InstancedMesh(sGeo, new THREE.MeshBasicMaterial({ color: "#2f8fa8", transparent: true, opacity: 0.32, depthWrite: false }), nStreak);
     this.streakPos = new Float32Array(nStreak * 3);
     for (let i = 0; i < nStreak; i++) {
       this.streakPos[i * 3] = (Math.random() - 0.5) * W;

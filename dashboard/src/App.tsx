@@ -3,7 +3,6 @@ import { FilterProvider, TABS, useFilters } from "./lib/filters";
 import { loadCore } from "./lib/dataset";
 import { usePromise } from "./lib/hooks";
 import { ErrorBox, Loading, Tooltip } from "./components/ui";
-import { Sidebar } from "./components/shell/Sidebar";
 import { TopNavigation } from "./components/shell/TopBar";
 import { MotionTransition } from "./components/shell/MotionTransition";
 
@@ -11,7 +10,8 @@ const OverviewPage = lazy(() => import("./pages/OverviewPage"));
 const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
 const MethodologyModal = lazy(() => import("./components/shell/MethodologyModal"));
 
-/** AppLayout: sidebar + header + satu area konten setinggi layar (desktop) atau bergulir (ponsel). */
+/** AppLayout: header + satu area konten setinggi layar (desktop) atau bergulir (ponsel).
+ *  Navigasi ada di MenuDock (pojok kanan atas TopBar), bukan sidebar. */
 function AppLayout() {
   const { view, tab, modal } = useFilters();
   useEffect(() => {
@@ -20,7 +20,6 @@ function AppLayout() {
   return (
     <div className="app">
       <a className="skip-link" href="#main" onClick={(e) => { e.preventDefault(); document.getElementById("main")?.focus(); }}>Lewati ke konten</a>
-      <Sidebar />
       <div className="app__main">
         <TopNavigation />
         <main id="main" className="app__content" tabIndex={-1}>

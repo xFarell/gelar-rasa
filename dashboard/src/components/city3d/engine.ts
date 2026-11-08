@@ -71,7 +71,7 @@ export class City3DScene {
     this.controls.addEventListener("start", () => { this.tween = null; });
 
     // Cahaya
-    this.scene.add(new THREE.HemisphereLight("#ffffff", "#cfe0d2", 1.7));
+    this.scene.add(new THREE.HemisphereLight("#ffffff", "#cfdce8", 1.7));
     const sun = new THREE.DirectionalLight("#fffaf0", 2.1);
     sun.position.set(-22, 40, 18);
     sun.castShadow = true;
@@ -102,7 +102,7 @@ export class City3DScene {
       const A = this.stations.get(a), B = this.stations.get(b); if (!A || !B) continue;
       const mid = new THREE.Vector3((A.x + B.x) / 2, 2.5 + Math.hypot(A.x - B.x, A.z - B.z) * 0.18, (A.z + B.z) / 2);
       const curve = new THREE.QuadraticBezierCurve3(new THREE.Vector3(A.x, 0.55, A.z), mid, new THREE.Vector3(B.x, 0.55, B.z));
-      const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(32)), new THREE.LineBasicMaterial({ color: "#368c85", transparent: true, opacity: 0.22, depthWrite: false }));
+      const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(32)), new THREE.LineBasicMaterial({ color: "#2f8fa8", transparent: true, opacity: 0.22, depthWrite: false }));
       this.links.add(line);
       this.linkLines.push({ a, b, line });
     }
@@ -267,7 +267,7 @@ export class City3DScene {
     for (const l of this.linkLines) {
       const on = focus && (l.a === focus || l.b === focus);
       l.line.material.opacity = on ? 0.95 : focus ? 0.1 : 0.22;
-      l.line.material.color.set(on ? "#285440" : "#368c85");
+      l.line.material.color.set(on ? "#1d4e6f" : "#2f8fa8");
     }
   }
   private pick(e: { clientX: number; clientY: number }) {
@@ -298,7 +298,7 @@ export class City3DScene {
     if (building !== this.hoveredBuilding) {
       const base = this.buildings.userData.baseColors as THREE.Color[];
       if (this.hoveredBuilding >= 0) this.buildings.setColorAt(this.hoveredBuilding, base[this.hoveredBuilding]);
-      if (building >= 0) this.buildings.setColorAt(building, base[building].clone().lerp(new THREE.Color("#d6e9d8"), 0.7));
+      if (building >= 0) this.buildings.setColorAt(building, base[building].clone().lerp(new THREE.Color("#d3e6f5"), 0.7));
       this.buildings.instanceColor!.needsUpdate = true;
       this.hoveredBuilding = building;
       this.dirty = true;

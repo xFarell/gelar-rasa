@@ -1,0 +1,42 @@
+{
+  "name": "air-in-motion",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AIR IN MOTION — dashboard kualitas udara & kesehatan masyarakat (Gelar Rasa 2026)",
+  "scripts": {
+    "data": "cd .. && python -m src.dashboard_data",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "build:single": "tsc --noEmit && vite build --mode single && node scripts/artifact_fragment.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "d3": "^7.9.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.169.0",
+    "topojson-client": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/node": "^20.19.43",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.169.0",
+    "@types/topojson-client": "^3.1.5",
+    "@vitejs/plugin-react": "^5.2.0",
+    "typescript": "^5.6.3",
+    "vite": "^7.3.7",
+    "vite-plugin-singlefile": "^2.3.4",
+    "vitest": "^4.1.12",
+    "world-atlas": "^2.0.2"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}
